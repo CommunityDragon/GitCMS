@@ -1,0 +1,6 @@
+/dist/
+/repos/
+/node_modules/
+config.yml
+
+.DS_Store

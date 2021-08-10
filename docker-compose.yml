@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  gitcms:
+    build: .
+    restart: always
+    volumes:
+     - ./repos:/app/repos
+    ports:
+      - 127.0.0.1:4726:4000
