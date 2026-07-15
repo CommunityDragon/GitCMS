@@ -1,8 +1,4 @@
-FROM node:14
-
-# RUN add-apt-repository ppa:ubuntu-toolchain-r/test
-RUN apt update
-RUN apt install libstdc++6
+FROM node:24
 
 WORKDIR /app
 
