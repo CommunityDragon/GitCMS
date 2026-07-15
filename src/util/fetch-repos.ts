@@ -1,5 +1,5 @@
 import { Configuration } from '../typings/configuration'
-import git, { Repository } from 'nodegit'
+import simpleGit from 'simple-git'
 import path from 'path'
 
 /**
@@ -12,17 +12,14 @@ import path from 'path'
 const cloneRepository = async (name: string, url: string, directory: string) => {
   console.log(`pulling ${url}`)
   const location = path.join(directory, name).toLowerCase()
-  let repo: Repository
   try {
-    repo = await git.Clone.clone(url, location)
+    await simpleGit().clone(url, location)
   } catch {
-    repo = await git.Repository.open(location)
+    // assume already present
   }
-  
+
   // pull latest changes
-  await repo.fetchAll()
-  await repo.cleanup()
-  await repo.mergeBranches('master', 'origin/master')
+  await simpleGit(location).pull()
 }
 
 /**
