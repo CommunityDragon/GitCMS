@@ -52,7 +52,7 @@ const mapFilesToPaths = (files: string[]): { [path: string]: string } => {
   list = list.map(({ file, path }) => ({ file, path: path.endsWith('readme') ? path.substr(0, path.length - 6) : path }))
   list = list.filter(({ file, path }) => (
     (path.endsWith('/') && file.toLowerCase().endsWith('readme.md'))
-      ? !list.some(item => item.path === path && item.file !== item.file)
+      ? !list.some(item => item.path === path && item.file !== file)
       : true
   ))
   list = Array.from(new Set(list.map(({ file, path }) => ({ file, path: (
