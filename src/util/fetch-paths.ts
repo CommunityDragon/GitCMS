@@ -35,7 +35,7 @@ export const fetchDirectories = memoize((directory: string): string[] =>
  */
 export const fetchFiles = memoize(async (directory: string): Promise<string[]> => {
   let list = await matches(path.join(process.cwd(), directory, '**/*.{md,MD,mD,Md}'))
-  list = list.map(item => path.relative(path.join(process.cwd(), directory), item))
+  list = list.map(item => path.relative(path.join(process.cwd(), directory), item).replace('\\', '/'))
   return list.filter(item => !item.startsWith('.') && !item.includes('/.'))
 }, { promise: true, maxAge: 1000 * 60 * 5 })
 

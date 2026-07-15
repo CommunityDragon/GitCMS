@@ -29,7 +29,7 @@ export interface Page extends FrontMatterResult<Attributes> {}
  */
 export const fetchPage = async (config: Configuration, directory: string, project: string, slug: string): Promise<Page> => {
   // fetches the relative path
-  const relativePath = (await fetchPathMap(directory))[path.join(project, slug)]
+  const relativePath = (await fetchPathMap(directory))[path.posix.join(project, slug)]
   if (!relativePath) throw new Error('page not found')
 
   // fetches the repo URL
